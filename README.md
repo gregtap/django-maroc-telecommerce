@@ -2,10 +2,8 @@ Django Maroc Telecommerce
 =========================
 
 Django Maroc Telecommerce is an application that implements Maroc Telecommerce
-payment gateway. Is is based on their 1.9 specs.
-
-Basicaly it takes care of the DigitalOffer (order) posting to the gateway and
-the callback. It uses Signals and HttpRedirects for optimal decoupling.
+payment gateway. Is is based on their 1.9 specs. Basically it takes care of the
+DigitalOffer (order) posting to the gateway as well as the callback handling. It uses Signals and HttpRedirects for optimal decoupling.
 
 Each order made to the gateway is persisted to db.
 
@@ -14,11 +12,10 @@ http://www.maroctelecommerce.com/
 Installation
 ------------
 
-pip install -e
-git@github.com:coulix/django-maroc-telecommerce.git#egg=dango-maroc-telecommerce
+    pip install -e git@github.com:coulix/django-maroc-telecommerce.git#egg=dango-maroc-telecommerce
 
-# Restkit (HTTP lib)
-pip install -e git+http://github.com/benoitc/restkit.git#egg=restkit
+    # Restkit (HTTP lib)
+    pip install -e git+http://github.com/benoitc/restkit.git#egg=restkit
 
 Usage
 -----
@@ -45,10 +42,10 @@ will be used for the http redirect once the payment is done
 Submit an order
 
     from maroc_telecommerce.models import DigitalOffer
-    ...
-    digital_offer = DigitalOffer(cart_id=...)
-    digital_offer.full_clean()
-    digital_offer.submit()
+        ...
+        digital_offer = DigitalOffer(cart_id=...)
+        digital_offer.full_clean()
+        digital_offer.submit()
 
 
     
@@ -57,30 +54,30 @@ Signals
 
 telecommerce_callback_received
     
-+ *is_valid* : True if the POST data from the callback matches a saved
++ **is_valid** : True if the POST data from the callback matches a saved
 digital offer.
 
-+ *is_payed* : True if the POST data result is 'ok'
++ **is_payed** : True if the POST data result is 'ok'
 
-+ *mtc_order_num* : Maroc telecommerce id
++ **mtc_order_num** : Maroc telecommerce id
 
-+ *order_id* : Your cart id 
++ **order_id** : Your cart id 
 
-+ *post_data* : The raw post data
++ **post_data** : The raw post data
 
 
 Settings
 --------
 
-+ *GATEWAY_URL* : the production gateway url
++ **GATEWAY_URL** : the production gateway url
 
-+ *GATEWAY_TEST_URL* : test gateway url
++ **GATEWAY_TEST_URL** : test gateway url
 
-+ *STORE_ID* : Your store id (provided by maroc telecommerce)
++ **STORE_ID** : Your store id (provided by maroc telecommerce)
 
-+ *SECRET* : Secret key (provided as well)
++ **SECRET** : Secret key (provided as well)
 
-+ *LANG* : 'EN' or 'FR'
++ **LANG** : 'EN' or 'FR'
 
 
 
