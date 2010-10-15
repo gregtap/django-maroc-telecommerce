@@ -28,7 +28,8 @@ MAPPED_PARAMS_TO_CHECK = {
 @login_required
 @require_POST
 @csrf_view_exempt
-def callback(request, template="maroc_telecommerce_callback.html", redirect_url=""): 
+def callback(request, template="maroc_telecommerce_callback.html", 
+    success_redirect_url="",  failure_redirect_url=""): 
     """
     Call back from the gateway.
     We match the POST data received from maroc telecommerce to a potential 
@@ -78,9 +79,10 @@ def callback(request, template="maroc_telecommerce_callback.html", redirect_url=
     else:
         cart_id = ""
         
-    return HttpResponseRedirect("%s?is_payed=%s&cart_id=%s&method=maroc_tele" % (
-        redirect_url,is_payed, cart_id))
-
+    if not is_payed:
+        return HttpResponseRedirect("%s?is_payed=%s&cart_id=%s&method=maroc_tele" % (
+            failure_redirect_url, is_payed, cart_id))
+    return HttpResponseRedirect(success_redirect_url)
     
 
 def _validate_digital_offer(post_data, digital_offer):

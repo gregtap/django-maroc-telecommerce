@@ -35,7 +35,8 @@ will be used for the http redirect once the payment is done
     urlpatterns += patterns('maroc_telecommerce.views',
         url(r'purchase/payment/maroc_telecommerce/callback/$', 'callback',
             name='maroc_doffer_callback', 
-            kwargs={'redirect_url': '/purchase/completed'}),
+            kwargs={'success_redirect_url': '/purchase/completed',
+                    'failure_redirect_url': '/purchase/fail'}),
     )
 
 
