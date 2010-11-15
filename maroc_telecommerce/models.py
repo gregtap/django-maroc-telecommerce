@@ -388,9 +388,20 @@ class DigitalOffer(models.Model):
             'Email': self.email,
             'Checksum': self._checksum(),
         }
-        data = urllib.urlencode(values)
+        
+        data = _unicode_urlencode(values)
         res = Resource(self.get_endpoint())
         r = res.post(payload=data, headers={'Content-Type': 'application/x-www-form-urlencoded'})
         return r 
  
+
+def _unicode_urlencode(params):
+    """
+    A unicode aware version of urllib.urlencode.
+    """
+    if isinstance(params, dict):
+        params = params.items()
+    return urllib.urlencode([(k, isinstance(v, unicode) and v.encode('utf-8') or v)
+                      for k, v in params])    
+         
     
