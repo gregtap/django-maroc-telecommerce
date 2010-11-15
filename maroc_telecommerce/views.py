@@ -82,7 +82,8 @@ def callback(request, template="maroc_telecommerce_callback.html",
     if not is_payed:
         return HttpResponseRedirect("%s?is_payed=%s&cart_id=%s&method=maroc_tele" % (
             failure_redirect_url, is_payed, cart_id))
-    return HttpResponseRedirect(success_redirect_url)
+    return HttpResponseRedirect("%s?method=maroc_tele&mtc_order_num=%s&cart_id=%s" % (
+        success_redirect_url, mtc_order_num, cart_id))
     
 
 def _validate_digital_offer(post_data, digital_offer):
