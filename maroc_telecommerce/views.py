@@ -89,7 +89,7 @@ def callback(request, template="maroc_telecommerce_callback.html",
 def _validate_digital_offer(post_data, digital_offer):
     for key, value in  MAPPED_PARAMS_TO_CHECK.iteritems():
         param = post_data.get(key, None)
-        if not param or param != str(digital_offer.__dict__[value]):
+        if not param or param != unicode(digital_offer.__dict__[value]):
             return False
     return True
 
