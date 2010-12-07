@@ -14,15 +14,15 @@ MAPPED_PARAMS_TO_CHECK = {
     'count':'count', 
     'city':'city',
     'StoreId':'store_id', 
-    'tel':'phone',
+    #'tel':'phone',
     'cardName':'buyer_name',
     'country':'country',
     'qty':'qty', 
     'postcode':'postcode', 
-    'address':'address', 
+    #'address':'address', 
     'email':'email', 
     'TotalmountTx':'total_amount_tx',
-    'desc':'desc'
+     #'desc':'desc'
 }
 
 @login_required
